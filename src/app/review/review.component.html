@@ -1,0 +1,48 @@
+<div class="custom-container pt-5 pb-5">
+
+  <h1 class="text-center">Review a Course</h1>
+  <div class="innerContainer" *ngIf="loading === false">
+    <!--Search bar for refining courses list-->
+    <div class="row mt-4 mb-4">
+      <div class="col-12 col-md-6 offset-md-3">
+          <div class="input-group">
+              <input class="form-control" (input)="refineList($event.target.value)" placeholder="Enter Course to refine results" style="border-radius:8px; border:2px solid navy;">
+              <div class="input-group-append">
+                  <i class="fas fa-search fa-2x ml-2 mt-1"></i>
+              </div>
+          </div>
+      </div>
+    </div>
+    <p *ngIf="msgText">{{ msgText }}</p>
+
+    <table class="table mt-5">
+      <tr class="text-center">
+        <th class="tableHeaders text-left">Course</th>
+        <th class="tableHeaders">Review</th>
+      </tr>
+      <tr *ngFor="let course of standardCourses" class="text-center">
+        <td class="text-left align-middle">
+          <a (click)="goToCourse(course.id)" class="courseLinks">{{ course.fullName }}</a>
+        </td>
+        <td class="align-middle" ><button (click)="openReview(course.fullName, course.id, reviewModal)" mat-raised-button color="primary">Submit Review</button></td>
+      </tr>
+    </table>
+
+    <!--dialog to add a review -->
+    <ng-template #reviewModal let-data>
+      <h4 mat-dialog-title>{{ data.reviewTitle }}</h4>
+      <mat-dialog-content>
+        <form [formGroup]="form" (ngSubmit)="submitReview(form.value)">
+            <mat-form-field style="width:100%;" class="mt-3 mb-3">
+              <mat-label for="comments" class="col-sm-2 col-form-label">Review Comments</mat-label>
+              <textarea cdkTextareaAutosize style="overflow-y: hidden;" matInput maxlength="300" formControlName="comments"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="d-block mx-auto" style="width:200px;">Submit</button>
+        </form>
+      </mat-dialog-content>
+    </ng-template>
+
+  </div>
+
+</div><!--end main container-->
+

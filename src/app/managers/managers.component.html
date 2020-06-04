@@ -1,0 +1,26 @@
+<div class="custom-container pt-5 pb-4" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+  <h1 class="text-center">Course Managers <span *ngIf="numManagers">( {{ numManagers }} )</span></h1>
+  <p>
+  * Managers are users who have been granted access to create and maintain a course on the site. Not the same as an admin who has
+  full access to all courses. The remove button removes the manager from the course, setting ownership of the course back to admin.
+  </p>
+
+  <table class="table mt-3">
+    <tr class="text-center">
+      <th class="tableHeaders text-left">Course</th>
+      <th class="tableHeaders">Manager</th>
+      <th class="tableHeaders">Type</th>
+      <th class="tableHeaders">Remove Manager</th>
+    </tr>
+    <tr class="text-center" *ngFor="let manager of allManagers">
+      <td class="text-left align-middle">{{ manager.courseName }}</td>
+      <td class="align-middle">{{ manager.memberName }}</td>
+      <td class="align-middle">{{ manager.type }}</td>
+      <td class="align-middle">
+        <button (click)="removeManager(manager.courseId)" mat-raised-button color="primary">Remove</button>
+      </td>
+    </tr>
+  </table>
+
+</div><!--end main container-->

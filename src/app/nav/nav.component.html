@@ -1,0 +1,41 @@
+<div class="header">
+  <br>
+  <h1 class="text-center title">CourseDB<span style="color:white;">.golf</span></h1>
+  <br>
+  <mat-toolbar>
+    <mat-toolbar-row class="first-nav">
+      <div>
+        <a class="nav-links" *ngIf="onPhone === false" routerLink="home">Find a Course</a>
+        <a class="nav-links" *ngIf="onPhone === false" routerLink="add">Add a Course</a>
+        <a class="nav-links" *ngIf="onPhone === false" routerLink="create">Manage a Free Course Listing</a>
+        <a class="nav-links" *ngIf="onPhone === false" rel="noopener" target="_blank" href="https://www.clubeg.golf/common/golfawayApp/index.php#/">Golf Trips</a>
+
+        <a class="nav-links" *ngIf="onPhone === true" routerLink="home">Find</a>
+        <a class="nav-links" *ngIf="onPhone === true" routerLink="add">Add</a>
+        <a class="nav-links" *ngIf="onPhone === true" routerLink="create">Manage</a>
+        <a class="nav-links" *ngIf="onPhone === true" rel="noopener" target="_blank" href="https://www.clubeg.golf/common/golfawayApp/index.php#/">Trips</a>
+      </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="second-nav" style="position:relative;">
+      <a class="nav-links" routerLinkActive="active-link" routerLink="about">About</a>
+      <a class="nav-links" routerLinkActive="active-link" routerLink="contact">Contact</a>
+      <a class="nav-links" *ngIf="onPhone === false" routerLinkActive="active-link" routerLink="reviews">Course Reviews</a>
+      <a class="nav-links" *ngIf="onPhone === true" routerLinkActive="active-link" routerLink="reviews">Reviews</a>
+      <button mat-button class="loginBtn" *ngIf="userLoggedIn === false" (click)="showLogin()">Login</button>
+      <mat-icon class="accountBtn" *ngIf="userLoggedIn === true && showUserMenu === false" (click)="toggleUserMenu()">account_box</mat-icon>
+
+      <div *ngIf="userLoggedIn === true && showUserMenu === true" style="position:absolute; background-color:white; z-index:2; padding:10px; top:0; border:1px solid lightgray; right:0px; height:250px; width:200px;">
+        <div style="width:100%; height:38px; display:flex; align-items: center; justify-content: center;">
+          <mat-icon (click)="toggleUserMenu()" class="mr-3">account_box</mat-icon>
+          <span>{{ getUserName() }}</span>
+        </div>
+        <hr>
+        <button (click)="toggleUserMenu()" routerLink="/user/course/all" mat-raised-button style="width:100%;">Your Courses</button><br>
+        <button (click)="toggleUserMenu()" routerLink="/admin" *ngIf="isUserAdmin === true" mat-raised-button style="width:100%; margin-top:5px">Admin</button><br>
+        <button (click)="toggleUserMenu()" href="https://clubeg.golf/clubeg-app/#/profile/edit" mat-raised-button style="width:100%; margin-top:5px">Edit Profile</button><br>
+        <button (click)="logout(); toggleUserMenu()" mat-raised-button style="width:100%; margin-top:5px">Logout</button>
+      </div>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

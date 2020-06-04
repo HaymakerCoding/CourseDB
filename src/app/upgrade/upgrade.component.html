@@ -1,0 +1,25 @@
+<div class="custom-container pt-4 pb-4">
+  <h1>Upgrade Basic Course</h1>
+  <p>Change a basic course into a standard course, transfering over the basic data.</p>
+
+  <div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+      <h2 class="text-center" style="font-size:18px;" for="searchInput">Refine List:</h2>
+      <div class="input-group">
+          <input #searchInput class="form-control" (input)="refineList($event.target.value)" placeholder="Enter a golf course" style="border-radius:8px; max-width:400px; margin: auto; border:2px solid navy;">
+      </div>
+    </div>
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let course of basicCourses">
+      <div class="row" style="width:100%;">
+        <div class="col-6" style="display: flex; align-items: center; width:100%;">{{ course.fullName }}</div>
+        <div class="col-6" style="display: flex; align-items: center; width:100%;">
+          <button color="primary" (click)="upgrade(course.id)" mat-raised-button>Upgrade</button>
+        </div>
+      </div>
+      </mat-list-item>
+  </mat-list>
+
+
+</div>

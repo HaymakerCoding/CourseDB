@@ -1,0 +1,50 @@
+<div class="custom-container pb-5 pt-5" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+
+  <div *ngIf="loading === true" style="height: 300px;">
+    <mat-spinner  class="mx-auto d-block mt-5"></mat-spinner>
+    <h6 class="mt-2 text-center">Loading...</h6>
+  </div>
+
+  <div *ngIf="loading === false">
+    <h1 class="text-center">Reviews ({{ reviews.length }})</h1>
+
+    <!--Search bar for refining courses list-->
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-6 offset-md-3">
+          <div class="input-group">
+              <input class="form-control" (input)="refineList($event.target.value)" placeholder="Enter Course name to refine list" style="border-radius:8px; border:2px solid navy;">
+              <div class="input-group-append">
+                  <i class="fas fa-search fa-2x ml-2 mt-1"></i>
+              </div>
+          </div>
+      </div>
+    </div>
+    <hr>
+
+    <table class="table">
+      <tr class="text-center">
+        <th class="tableHeaders text-left">Course</th>
+        <th class="tableHeaders">User</th>
+        <!--
+        <th class="tableHeaders">Rating</th>
+        -->
+        <th class="tableHeaders">Comments</th>
+        <th class="tableHeaders">Submitted</th>
+        <th class="tableHeaders">Remove</th>
+      </tr>
+
+      <tr class="text-center" *ngFor="let review of reviews">
+        <td class="text-left align-middle">{{ review.courseName }}</td>
+        <td class="align-middle">{{ review.userId  === '1' ? 'golfer' : review.userFullName }}</td>
+        <td class="align-middle">{{ review.comments }}</td>
+        <td class="align-middle">{{ review.submitted }}</td>
+        <td class="align-middle"><button (click)="deleteReview(review.id)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </table>
+
+  </div>
+
+</div>
+

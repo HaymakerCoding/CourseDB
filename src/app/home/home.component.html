@@ -1,0 +1,87 @@
+<div class="custom-container pt-5 pb-5">
+
+  <h1 class="mb-4 text-center">Worldwide Golf Course Directory</h1>
+
+  <div class="innerContainer" *ngIf="loading === false">
+
+    <div class="row">
+      <div class="col-12 col-md-6 offset-md-3">
+        <h2 class="text-center" style="font-size:18px;" for="searchInput">Find a course by name:</h2>
+        <div class="input-group">
+            <input #searchInput class="form-control" (input)="refineList($event.target.value)" placeholder="Enter a golf course" style="border-radius:8px; max-width:400px; margin: auto; border:2px solid navy;">
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 mb-5" [style.backgroundColor]="'#728bb8'" style="height:5px; width:85%; border: 1px solid; margin-right:10%; margin-left:10%; border-radius:2px;"></div>
+    <h3 class="text-center">OR</h3>
+    <h2 class="text-center" style="font-size:18px;">Find a course by region:</h2>
+    <div class="row">
+          <div class="col-12 col-md-3 text-center">
+            <label class="locationLabels" for="countryInput">Country</label>
+            <select id="countryInput" class="form-control" (change)="refineSearch($event.target, 'country')">
+                <option [selected]="country === countrySearch" *ngFor="let country of countries">{{ country }}</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-3 text-center">
+            <label class="locationLabels" for="provinceInput">Province/State</label>
+            <select id="provinceInput" class="form-control" (change)="refineSearch($event.target, 'province')">
+              <option [selected]="province === provinceSearch" *ngFor="let province of provinces">{{ province }}</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-3 text-center">
+            <label class="locationLabels" for="cityInput">Closest City</label>
+            <select id="cityInput" class="form-control" (change)="refineSearch($event.target, 'city')">
+              <option [selected]="city === citySearch" *ngFor="let city of cities">{{ city }}</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-3 text-center">
+            <label class="locationLabels" for="provinceInput">Town/Region</label>
+            <select id="provinceInput" class="form-control" (change)="refineSearch($event.target, 'region')">
+              <option [selected]="region === regionSearch" *ngFor="let region of regions">{{ region }}</option>
+            </select>
+          </div>
+          <!--display the current country/city etc selected if not 'all'-->
+          <h5 class="ml-4 mt-3" *ngIf="currentCountryName && currentCountryNum && !currentProvinceName && !currentCityName && !currentRegionName">
+            {{ 'Courses found in ' + currentCountryName + ': ' + currentCountryNum }}
+          </h5>
+          <h5 class="ml-4 mt-3"  *ngIf="currentProvinceName && (currentProvinceNum || currentProvinceNum === 0) && !currentCityName  && !currentRegionName">
+            {{ 'Courses found in ' + currentProvinceName + ': ' + currentProvinceNum }}
+          </h5>
+          <h5 class="ml-4 mt-3"  *ngIf="currentCityName && (currentCityNum || currentCityNum === 0) && !currentRegionName">
+            {{ 'Courses found near ' + currentCityName + ': '  + currentCityNum }}
+          </h5>
+          <h5 class="ml-4 mt-3"  *ngIf="currentRegionName && (currentRegionNum || currentRegionNum === 0)">
+            {{ 'Courses found in ' + currentRegionName + ': '  + currentRegionNum }}
+          </h5>
+    </div>
+
+    <div class="mt-5 mb-5" [style.backgroundColor]="'#728bb8'" style="height:5px; width:85%; border: 1px solid; margin-right:10%; margin-left:10%; border-radius:2px;"></div>
+
+    <div class="row">
+      <div class="col-12">
+          <table *ngIf="courses && courses.length > 0" class="table table-sm table-striped mt-3">
+              <tr>
+                <th>Golf Course</th>
+                <th *ngIf="provinceSearch === 'All'" class="text-center">Province/State</th>
+                <th *ngIf="citySearch === 'All'" class="text-center">Closest City</th>
+                <th *ngIf="regionSearch === 'All'" class="text-center">Town/Region</th>
+              </tr>
+
+              <tr *ngFor="let course of courses" class="clickableRows" (click)="goToCourse(course.id, course.listingType)">
+                <td>{{course.fullName}}</td>
+                <td *ngIf="provinceSearch === 'All'" class="text-center">{{  course.province  }}</td>
+                <td *ngIf="citySearch === 'All'" class="text-center">{{  course.city  }}</td>
+                <td *ngIf="regionSearch === 'All'" class="text-center">{{  course.region  }}</td>
+              </tr>
+
+            </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,29 @@
+<div class="custom-container pb-4 pt-5" style="position:relative;">
+
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+  <h1 class="text-center">Courses Awaiting Publishing ({{ numOfCourses }})</h1>
+
+  <br>
+  <table class="table">
+    <tr *ngFor="let course of courses">
+      <td class="align-middle">{{ course.fullName }}</td>
+      <td><button (click)="viewCourse(viewModal, course.id)" class="btn btn-outline-secondary">View</button></td>
+      <td><button (click)="approve(course.id)" mat-raised-button color="primary">Publish</button></td>
+    </tr>
+  </table>
+
+  <!-- Modal to view the course listing-->
+  <ng-template #viewModal let-data>
+    <h3 mat-dialog-title>Course Preview</h3>
+    <mat-dialog-content>
+    <div class="modal-body">
+      <app-course [id]="data"></app-course>
+    </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="close()">Done</button>
+    </mat-dialog-actions>
+  </ng-template>
+
+</div><!--end main container-->
+

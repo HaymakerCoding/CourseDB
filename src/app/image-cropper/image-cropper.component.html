@@ -1,0 +1,16 @@
+<div *ngIf="loading" style="width:100%; min-height:75vh; background-color:rgb(245, 242, 242);" class="text-center">
+  <div class="spinner-border text-info mt-5" style="width:8rem; height:8rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+  <h6 class="text-center">Select cropping:</h6>
+  <div class="img-container">
+    <img #image [src]="imageSource">
+  </div>
+  <h6 class="text-center mt-2">Finished result:</h6>
+  <img [src]="imageDestination" class="img-preview img-fluid mx-auto d-block">
+
+  <button (click)="saveImg()" class="btn btn-primary mx-auto d-block mt-2 mb-3" style="width:200px;">Crop and Save</button>
+</div>

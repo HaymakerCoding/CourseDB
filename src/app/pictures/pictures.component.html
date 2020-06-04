@@ -1,0 +1,135 @@
+<div *ngIf="loading === true" style="width:100%; min-height:75vh; background-color:rgb(245, 242, 242);" class="text-center">
+  <div class="spinner-border text-info mt-5" style="width:8rem; height:8rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="loading === false">
+
+  <hr>
+  <h2 class="text-center">Course Logo</h2>
+
+  <div *ngIf="course.logo" class="text-center">
+    <img [src]="course.logo" class="img-fluid" style="max-width:40%;">
+    <button mat-raised-button color="primary" class="mx-auto d-block mt-1" (click)="setUploadType('Logo', uploadModal)">Change</button>
+  </div>
+  <div *ngIf="!course.logo" class="text-center">
+    <i>No logo set</i>
+    <button mat-raised-button color="primary" class="mx-auto d-block mt-1" (click)="setUploadType('Logo', uploadModal)">Add</button>
+  </div>
+
+  <hr>
+  <h2 class="text-center">Feature Image</h2>
+  <div *ngIf="course.featureImage" class="text-center">
+    <img class="img-fluid" style="max-width:50%;" [src]="course.featureImage">
+    <button mat-raised-button color="primary" class="mx-auto d-block mt-1" (click)="setUploadType('Feature Image', uploadModal)">Change</button>
+  </div>
+  <div *ngIf="!course.featureImage" class="text-center">
+    <i>No feature image set</i>
+    <button mat-raised-button color="primary" class="mx-auto d-block mt-1" (click)="setUploadType('Feature Image', uploadModal)">Add</button>
+  </div>
+
+  <hr>
+  <h2 class="text-center">Carousel Pictures ({{ getNumSliderImgs() }} / 6)</h2>
+  * It is not necessary to have all 6, only supplied images will show on the listing.
+  <div class="row">
+    <!--slide 1-->
+    <div class="col-4 mt-2">
+      <div *ngIf="course.slider1">
+        <img class="img-fluid" [src]="course.slider1">
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(1)">Change</button>
+      </div>
+      <div *ngIf="!course.slider1">
+        <h6 class="text-center">No image set</h6>
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(1)">Add</button>
+      </div>
+    </div>
+    <!--slide 2-->
+    <div class="col-4 mt-2">
+      <div *ngIf="course.slider2">
+        <img class="img-fluid" [src]="course.slider2">
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(2)">Change</button>
+      </div>
+      <div *ngIf="!course.slider2">
+        <h6 class="text-center">No image set</h6>
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(2)">Add</button>
+      </div>
+    </div>
+    <!--slide 3-->
+    <div class="col-4 mt-2">
+      <div *ngIf="course.slider3">
+        <img class="img-fluid" [src]="course.slider3">
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(3)">Change</button>
+      </div>
+      <div *ngIf="!course.slider3">
+        <h6 class="text-center">No image set</h6>
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(3)">Add</button>
+      </div>
+    </div>
+    <!--slide 4-->
+    <div class="col-4 mt-2">
+      <div *ngIf="course.slider4">
+        <img class="img-fluid" [src]="course.slider4">
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(4)">Change</button>
+      </div>
+      <div *ngIf="!course.slider4">
+        <h6 class="text-center">No image set</h6>
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(4)">Add</button>
+      </div>
+    </div>
+    <!--slide 5-->
+    <div class="col-4 mt-2">
+      <div *ngIf="course.slider5">
+        <img class="img-fluid" [src]="course.slider5">
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(5)">Change</button>
+      </div>
+      <div *ngIf="!course.slider5">
+        <h6 class="text-center">No image set</h6>
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(5)">Add</button>
+      </div>
+    </div>
+    <!--slide 6-->
+    <div class="col-4 mt-2">
+      <div *ngIf="course.slider6">
+        <img class="img-fluid" [src]="course.slider6">
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(6)">Change</button>
+      </div>
+      <div *ngIf="!course.slider6">
+        <h6 class="text-center">No image set</h6>
+        <button mat-raised-button color="primary" style="max-width:100%;" class="mx-auto d-block mt-1" (click)="setUploadType('Carousel Image', uploadModal); setSliderNumer(6)">Add</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <!-- Modal to upload images -->
+<ng-template #uploadModal>
+  <h3 mat-dialog-title class="text-center">{{ title }}</h3>
+  <mat-dialog-content>
+    <form>
+      <input #imageInput style="display:none;" class="form-control" (change)="setImagePreview($event)" type="file" accept="image/*">
+      <button (click)="imageInput.click()" class="btn btn-outline-secondary d-block mx-auto mt-3" style="width:200px;">Select Image File</button>
+      <hr>
+      <div *ngIf="loading === true" style="width:100%; min-height:75vh; background-color:rgb(245, 242, 242);" class="text-center">
+        <div class="spinner-border text-info mt-5" style="width:8rem; height:8rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="loading === false">
+        <img *ngIf="previewImg" [src]="previewImg" class="img-fluid mx-auto d-block" style="max-width:300px;">
+        <div style="width:100%;" class="text-center">
+          <i (click)="imageInput.click()" style="cursor:pointer;" *ngIf="!previewImg" class="far fa-image fa-5x mx-auto d-block"></i>
+        </div>
+      </div>
+      <hr>
+      <p>* Max file size is 1 GB. Supports: jpeg, jpg, gif, png, webp</p>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button [disabled]="!imageReady" *ngIf="loading === false" (click)="saveImg()" mat-raised-button color="primary" style="width:200px;">Save</button>
+    <button *ngIf="loading === false" mat-raised-button color="primary" style="width:200px;" (click)="close()">Cancel</button>
+  </mat-dialog-actions>
+</ng-template>
+
+

@@ -1,0 +1,63 @@
+<div class="custom-container pt-5 pb-4" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+  <h1 class="text-center">Add a Basic Course Listing</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submitForm(form.value)">
+      <h4 class="mt-3">Course Info:</h4>
+      <div class="form-group row">
+        <label for="courseName" class="col-sm-2 col-form-label">Course Name *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="courseName" name="Course_Name" formControlName="name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="website" class="col-sm-2 col-form-label">Website *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="100" id="website" name="Website" formControlName="website">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="country" class="col-sm-2 col-form-label">Country *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="country" name="Country" formControlName="country">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="province" class="col-sm-2 col-form-label">Province/State *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="province" name="Province" formControlName="province">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">City *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="city" name="City" formControlName="city">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">Region/Town</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="region" name="Region" formControlName="region">
+        </div>
+      </div>
+
+      <h4 class="mt-3">Submitted by:</h4>
+      <div class="form-group row">
+        <label for="name" class="col-sm-2 col-form-label">Name *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="name" name="Name" formControlName="submitted_by">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email *</label>
+        <div class="col-sm-9">
+          <input type="email" class="form-control" maxlength="50" id="email" name="Email" formControlName="submitter_email">
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <button mat-raised-button color="primary" [disabled]="!form.valid" name='btnSubmit' id='btnSubmit'>Submit</button>
+      </div>
+      * Required
+
+  </form>
+</div>

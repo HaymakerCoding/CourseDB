@@ -1,0 +1,52 @@
+<div class="custom-container pt-5 pb-4" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+  <div *ngIf="loading === true" style="height: 300px;">
+    <mat-spinner  class="mx-auto d-block mt-5"></mat-spinner>
+    <h6 class="mt-2 text-center">Loading...</h6>
+  </div>
+
+  <div *ngIf="loading === false">
+    <h1 class="text-center">Add Manager to Course</h1>
+    <p>This makes the member that is linked the 'owner' of the course. Giving them editing rights to the data.</p>
+    <hr>
+
+    <!--section titles-->
+    <div class="row">
+      <div class="col-4">
+        <h3 class="text-center">Course</h3>
+      </div>
+      <div class="col-4 offset-4">
+        <h3 class="text-center">Member</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <input (input)="searchCourses($event.target.value)" #courseInput class="form-control" type="text" placeholder="Enter Course Name">
+        <div>
+          <ul class="list-unstyled">
+            <li class="mt-2" style="width:100%;" *ngFor="let course of courseList"><button style="width:100%;" (click)="courseSelected(course, courseInput)" class="btn btn-outline-secondary mx-auto d-block">{{ course.name }}</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+            <div style="display: flex; align-items: center; justify-content: center; width:100%;">
+              <i class="fas fa-long-arrow-alt-left fa-2x mr-4"></i>
+              <button (click)="linkThem()" mat-raised-button color="primary">Link</button>
+              <i class="fas fa-long-arrow-alt-right fa-2x ml-4"></i>
+            </div>
+      </div>
+      <div class="col-4">
+        <input (input)="searchMembers($event.target.value)" #memberInput class="form-control" type="text" placeholder="Enter Member Name">
+        <div>
+          <ul class="list-unstyled">
+            <li class="mt-2" *ngFor="let member of memberList"><button style="width:100%;" (click)="memberSelected(member, memberInput)" class="btn btn-outline-secondary mx-auto d-block">{{ member.fullName }}</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!--end main container-->
+

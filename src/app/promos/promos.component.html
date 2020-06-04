@@ -1,0 +1,70 @@
+<div *ngIf="loading === true" style="width:100%; min-height:75vh; background-color:rgb(245, 242, 242);" class="text-center">
+  <div class="spinner-border text-info mt-5" style="width:8rem; height:8rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="loading === false">
+  <hr>
+  <h2 class="text-center">Promos ({{ course.promos.length }} / 8)</h2>
+  <p>Set optional promo ads for the bottom of the listing. URLs can be added for making the promo picture clickable.
+    Click promo to change image.</p>
+
+  <!--Button to add a promo-->
+  <div *ngIf="numPromos < 8">
+    <button (click)="showPromo(promoDialog, null)" class="btn btn-outline-secondary">Add Promo</button>
+  </div>
+
+  <!--8 promo boxes-->
+  <div class="row">
+    <div class="col-6 col-md-4 col-lg-3" *ngFor="let promo of course.promos; let i = index">
+      <div class="promoBoxes" (click)="showPromo(promoDialog, promo)">
+        <img class="img-fluid" width=100%  [src]="promo.pic">
+      </div>
+      <div class="input-group">
+        <input [(ngModel)]="promo.link" class="form-control" placeholder="Enter Promo URL" value="{{ promo.link }}">
+        <div class="input-group-append">
+          <button (click)="updateLink(promo)" mat-raised-button color="primary">Update</button>
+        </div>
+      </div>
+      <mat-icon class="mx-auto d-block" style="font-size:30px;" (click)="deletePromo(promo.id, promo.pic)">delete_forever</mat-icon>
+    </div>
+  </div>
+
+  <!--Modal for adding a new promo-->
+  <ng-template #promoDialog let-data>
+      <h4 mat-dialog-title *ngIf="!data" class="modal-title" id="modal-basic-title">Add a Promo</h4>
+      <h4 mat-dialog-title *ngIf="data" class="modal-title" id="modal-basic-title">Updating Promo Picture</h4>
+    <mat-dialog-content>
+      <form>
+          <input #uploadInput style="display:none;" class="form-control" (change)="setImagePreview($event)" type="file" accept="image/*">
+          <button (click)="uploadInput.click()" class="btn btn-outline-secondary d-block mx-auto mt-3" style="width:200px;">Select Image</button>
+          <hr>
+          <div *ngIf="loading" style="width:100%; min-height:75vh; background-color:rgb(245, 242, 242);" class="text-center">
+            <div class="spinner-border text-info mt-5" style="width:8rem; height:8rem;" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+          <div *ngIf="!loading">
+            <img *ngIf="previewImg" [src]="previewImg" class="img-fluid mx-auto d-block" style="max-width:50%;">
+            <div style="width:100%;" class="text-center">
+              <i (click)="showFileUpload()" style="cursor:pointer;" *ngIf="!previewImg" class="far fa-image fa-5x mx-auto d-block"></i>
+            </div>
+          </div>
+          <hr>
+          <p>* Max file size is 1 GB. Supports: jpeg, jpg, gif, png, webp</p>
+          <mat-form-field appearance="outline" style="width:100%;">
+            <mat-label>Promo Link</mat-label>
+            <input matInput #linkInput>
+          </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button *ngIf="!data" [disabled]="!imageReady" (click)="addPromo(linkInput.value)" mat-raised-button color="primary" style="width:200px;">Save</button>
+        <button *ngIf="data" [disabled]="!imageReady" (click)="updatePromo(data)" mat-raised-button color="primary" style="width:200px;">Update</button>
+        <button (click)="close()" mat-raised-button color="primary" style="width:200px;">Cancel</button>
+    </mat-dialog-actions>
+  </ng-template>
+
+
+</div>

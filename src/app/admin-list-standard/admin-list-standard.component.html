@@ -1,0 +1,44 @@
+<div class="custom-container pb-4 pt-5" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+  <h1 class="text-center">Standard Course Listings ({{ numCourses }})</h1>
+  <hr>
+  <div class="row">
+      <div class="col-12 col-md-6 offset-md-3">
+          <div class="input-group">
+              <input class="form-control" (input)="refineList($event.target.value)" placeholder="Enter Course to refine results" style="border-radius:8px; border:2px solid navy;">
+              <div class="input-group-append">
+                  <i class="fas fa-search fa-2x ml-2 mt-1"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+  <hr>
+
+  <button (click)="changeInfo()" mat-raised-button color="primary">Show {{ showText }}</button>
+  <table class="table mt-3">
+    <tr class="text-center">
+      <th class="tableHeaders text-left">Name</th>
+      <th *ngIf="showText === 'less'" class="tableHeaders">Address</th>
+      <th *ngIf="showText === 'less'" class="tableHeaders">Country</th>
+      <th *ngIf="showText === 'less'" class="tableHeaders">Province</th>
+      <th class="tableHeaders">City</th>
+      <th *ngIf="showText === 'less'" class="tableHeaders">Region</th>
+      <th *ngIf="showText === 'less'" class="tableHeaders">Owner</th>
+      <th class="tableHeaders">Edit</th>
+      <th class="tableHeaders">Delete</th>
+    </tr>
+    <tr *ngFor="let course of standardCourses" class="text-center">
+      <td class="text-left">{{ course.fullName }}</td>
+      <td *ngIf="showText === 'less'">{{ course.address }}</td>
+      <td *ngIf="showText === 'less'">{{ course.country }}</td>
+      <td *ngIf="showText === 'less'">{{ course.province }}</td>
+      <td>{{ course.city }}</td>
+      <td *ngIf="showText === 'less'">{{ course.region }}</td>
+      <td *ngIf="showText === 'less'">{{ course.owner }}</td>
+      <td><mat-icon (click)="goToEdit(course.id)">edit</mat-icon></td>
+      <td><mat-icon (click)="delete(course.id, course.fullName)">delete_forever</mat-icon></td>
+    </tr>
+
+  </table>
+
+</div><!--end main container-->

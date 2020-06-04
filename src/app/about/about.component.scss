@@ -1,0 +1,18 @@
+.headings{
+    color:#283655;
+}
+hr{
+     background-color:#d0e1f9;
+}
+
+@media only screen and (max-width:1000px){
+    #pcMiddle{
+        display:none!important;
+    }
+    #mobileMiddle{
+        display:inline-block!important;
+    }
+    #leftSidebar, #rightSidebar{
+        border:none!important;
+    }
+}

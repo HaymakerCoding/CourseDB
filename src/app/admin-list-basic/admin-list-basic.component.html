@@ -1,0 +1,43 @@
+<div class="custom-container pb-4 pt-5" style="position:relative;">
+
+  <div *ngIf="loading === true" style="height: 300px;">
+    <mat-spinner  class="mx-auto d-block mt-5"></mat-spinner>
+    <h6 class="mt-2 text-center">Loading...</h6>
+  </div>
+  <div class="innerContainer" *ngIf="loading === false">
+
+    <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+    <h1 class="text-center">Basic Course Listings ({{ basicCourses.length }})</h1>
+
+    <button (click)="changeInfo()" mat-button>Show {{ showText }}</button>
+    <table class="table mt-3">
+      <tr class="text-center">
+        <th class="tableHeaders text-left">Name</th>
+        <th *ngIf="showText === 'less'" class="tableHeaders">Website</th>
+        <th *ngIf="showText === 'less'" class="tableHeaders">Country</th>
+        <th *ngIf="showText === 'less'" class="tableHeaders">Province</th>
+        <th class="tableHeaders">City</th>
+        <th *ngIf="showText === 'less'" class="tableHeaders">Region</th>
+        <th *ngIf="showText === 'less'" class="tableHeaders">Submitted By</th>
+        <th *ngIf="showText === 'less'" class="tableHeaders">Submitter Email</th>
+        <th class="tableHeaders">Edit</th>
+        <th class="tableHeaders">Delete</th>
+      </tr>
+      <tr *ngFor="let course of basicCourses" class="text-center">
+        <td class="text-left align-middle">{{ course.fullName }}</td>
+        <td class="align-middle" *ngIf="showText === 'less'">{{ course.website }}</td>
+        <td class="align-middle" *ngIf="showText === 'less'">{{ course.country }}</td>
+        <td class="align-middle" *ngIf="showText === 'less'">{{ course.province }}</td>
+        <td class="align-middle">{{ course.city }}</td>
+        <td class="align-middle" *ngIf="showText === 'less'">{{ course.region }}</td>
+        <td class="align-middle" *ngIf="showText === 'less'">{{ course.submittedBy }}</td>
+        <td class="align-middle" *ngIf="showText === 'less'">{{ course.submitterEmail }}</td>
+        <td class="align-middle"><mat-icon (click)="goToEdit(course.id)">edit</mat-icon></td>
+        <td class="align-middle"><mat-icon (click)="delete(course.id)">delete</mat-icon></td>
+      </tr>
+
+    </table>
+
+  </div>
+
+</div><!--end main container-->

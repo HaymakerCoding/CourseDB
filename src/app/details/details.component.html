@@ -1,0 +1,68 @@
+ <!--3 text boxes, more info, details, special events-->
+ <br>
+ <p>You have 3 containers to display details for the course. In the left and right, any title can be set and any text can be added to the main body, including HTML.
+   The middle container is for up to 8 links to other pages for more information.
+ </p>
+ <p style="color:red;" *ngIf="unsavedChanges === true">* You have unsaved changes.</p>
+ <form [formGroup]="form" (ngSubmit)="submitForm(form.value)">
+  <div class="row">
+      <div class="col-12 col-lg-4 ">
+          <div id="blueBox1" class="infoBoxes text-left" style="cursor:pointer;">
+              <input (input)="checkUnsaved()" placeholder="Enter Title" class="form-control" formControlName="left_blue_box_title">
+              <textarea (input)="checkUnsaved()" placeholder="Enter any text/HTML" class="form-control mt-2" rows="10" formControlName="left_blue_box_text"></textarea>
+              <input (input)="checkUnsaved()" placeholder="Enter URL for more info" class="form-control mt-2" formControlName="left_blue_box_link">
+          </div>
+      </div>
+      <div class="col-12 col-lg-4 ">
+          <div id="blueBox2" class="infoBoxes text-left" style="min-height:100%!important;">
+              <h4 style="color:white!important;">More Info</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <input (input)="checkUnsaved()" placeholder="#1 Text" class="form-control" formControlName="more_info_1_text">
+                  <input (input)="checkUnsaved()" placeholder="#1 URL" class="form-control" formControlName="more_info_1_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#2 Text" class="form-control" formControlName="more_info_2_text">
+                  <input (input)="checkUnsaved()" placeholder="#2 URL" class="form-control" formControlName="more_info_2_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#3 Text" class="form-control" formControlName="more_info_3_text">
+                  <input (input)="checkUnsaved()" placeholder="#3 URL" class="form-control" formControlName="more_info_3_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#4 Text" class="form-control" formControlName="more_info_4_text">
+                  <input (input)="checkUnsaved()" placeholder="#4 URL" class="form-control" formControlName="more_info_4_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#5 Text" class="form-control" formControlName="more_info_5_text">
+                  <input (input)="checkUnsaved()" placeholder="#5 URL" class="form-control" formControlName="more_info_5_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#6 Text" class="form-control" formControlName="more_info_6_text">
+                  <input (input)="checkUnsaved()" placeholder="#6 URL" class="form-control" formControlName="more_info_6_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#7 Text" class="form-control" formControlName="more_info_7_text">
+                  <input (input)="checkUnsaved()" placeholder="#7 URL" class="form-control" formControlName="more_info_7_link">
+                </li>
+                <li class="mt-1">
+                  <input (input)="checkUnsaved()" placeholder="#8 Text" class="form-control" formControlName="more_info_8_text">
+                  <input (input)="checkUnsaved()" placeholder="#8 URL" class="form-control" formControlName="more_info_8_link">
+                </li>
+              </ul>
+          </div>
+      </div>
+      <div class="col-12 col-md-4 ">
+          <div id="blueBox3" class="infoBoxes text-left" style="cursor:pointer;">
+              <input (input)="checkUnsaved()" placeholder="Enter Title" class="form-control" formControlName="right_blue_box_title">
+              <textarea (input)="checkUnsaved()" placeholder="Enter any text/HTML"  class="form-control mt-2" rows="10" formControlName="right_blue_box_text"></textarea>
+              <input (input)="checkUnsaved()" placeholder="Enter URL for more info" class="form-control mt-2" formControlName="right_blue_box_link">
+          </div>
+      </div>
+  </div>
+
+  <div class="form-group text-center mt-3">
+    <button mat-raised-button color="primary" style="width:200px;" name='btnSubmit'>Save Changes</button>
+  </div>
+
+</form>

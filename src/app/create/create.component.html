@@ -1,0 +1,52 @@
+<div class="custom-container pt-5 pb-5">
+
+  <h1>Manage Free Course Listing</h1>
+  <hr>
+    <p>For course managers and official representatives only.</p>
+		<p>Build a professional page to showcase your golf course to the world. Add your own promotional copy, logo, images, videos,
+      links to present your golf course to the worldwide golf community in a way that aligns with your own marketing strategy.</p>
+		<p>Please fill out the form below to apply for your free CourseDB.golf listing. Once we confirm you are the official representative
+      of your course we will create an account for you to upload and maintain your own content.</p>
+    <p>We can also build and maintain your CourseDB.golf listing on your behalf. If this is of interest, then you would provide us
+      with your content via email. There is an annual fee of $349 CAN for this service but if you do it yourself, there is no charge.</p>
+    <p>When you are satisfied with the look of your page and once we confirm it conforms to CourseDB.golf standards, we publish it.</p>
+  <hr>
+  <form *ngIf="!showThankYou"
+    [formGroup]="form"
+    (ngSubmit)="submitForm(form.value)">
+
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Course Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="courseName" name="courseName" formControlName="courseName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Course Website</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="courseWebsite" name="courseWebsite" formControlName="courseWebsite">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Manager Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="managerName" name="managerName" formControlName="managerName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" name="email" formControlName="email">
+      </div>
+    </div>
+
+    <button class="mx-auto d-block" mat-raised-button color="primary" [disabled]="!form.valid">Submit</button>
+  </form>
+
+  <div *ngIf="showThankYou">
+      <p>Thank you for you interest.</p>
+      <p>We will be in touch shortly about your registration.</p>
+  </div>
+
+
+</div>

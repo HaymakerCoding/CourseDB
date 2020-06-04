@@ -1,0 +1,44 @@
+<div class="custom-container pt-5 pb-4" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin"><i class="fas fa-long-arrow-alt-left"></i> Back to Admin</a>
+  <h1 class="text-center">Add a Standard Course Listing</h1>
+  <br>
+
+  <form [formGroup]="form" (ngSubmit)="submitForm(form.value)">
+      <div class="form-group row">
+        <label for="courseName" class="col-sm-2 col-form-label">Course Full Name *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="courseName" name="Course_Name" formControlName="name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="country" class="col-sm-2 col-form-label">Country *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="country" name="Country" formControlName="country">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="province" class="col-sm-2 col-form-label">Province/State *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="province" name="Province" formControlName="province">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">Closest City *</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="city" name="City" formControlName="city">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">Region/Town</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" maxlength="50" id="region" name="Region" formControlName="region">
+        </div>
+      </div>
+
+      <div class="form-group text-center">
+        <button class="btn btn-primary" [disabled]="!form.valid" name='btnSubmit' id='btnSubmit'>Submit</button>
+      </div>
+      * Required
+
+  </form>
+</div>

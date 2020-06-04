@@ -1,0 +1,69 @@
+.header{
+    background-image: url('https://www.clubeg.golf/background.jpg');
+    background-size:cover;
+    background-position: center;
+    
+}
+.title{
+    margin-top: 20px;
+    font-size:50px;
+}
+.first-nav{
+    display:flex;
+    justify-content: center;
+    background-color:#283655
+}
+.first-nav .nav-links{
+    border:1px solid white;
+    padding:10px;
+    border-radius:6px;
+    background-color:#4d648d;
+    color:white;
+}
+.second-nav{
+    display:flex;
+    justify-content: center;
+    background-color:none!important;
+}
+.second-nav .nav-links:hover{
+    color:#607D8B;
+}
+.second-nav .nav-links.active-link{
+    color:#607D8B;
+}
+.mat-toolbar{
+    background-color:transparent;
+}
+.second-nav .nav-links{
+    padding:10px;
+    color:#283655;
+}
+.mat-icon{
+    cursor: pointer;
+}
+.loginBtn{
+    background-color:transparent;
+    font-size:18px; border:1px solid #607D8B; padding:2px; 
+    position: absolute; 
+    right:5px; 
+    top:10%;
+    height:80%;
+}
+.accountBtn{
+    position: absolute; 
+    right:5px; 
+    top:50%;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+}
+@media only screen and (max-width:900px){
+    .title{
+        margin-top: 10px;
+        font-size: 35px;
+    }
+    .second-nav{
+        font-size:16px; 
+    }
+    
+    
+}

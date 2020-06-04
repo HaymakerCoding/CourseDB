@@ -1,0 +1,48 @@
+<div class="custom-container pt-5 pb-4" style="position:relative;">
+  <a style="position:absolute; top:5px; left:5px;" routerLink="/admin/standard/all"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+
+<div *ngIf="!showPage" style="width:100%; min-height:75vh; background-color:rgb(245, 242, 242);" class="text-center">
+  <div class="spinner-border text-info mt-5" style="width:8rem; height:8rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="showPage" class="innerContainer">
+
+  <h1 class="text-center mb-3">Editing {{ course.fullName }}</h1>
+  <button class="mx-auto d-block mt-3" mat-raised-button color="primary" (click)="openPreview(viewModal, course.id)">Preview</button>
+
+  <div style="width:100%;" class="text-center mt-3">
+    <div class="btn-group" role="group">
+      <button (click)="changeSection(1)" type="button" class="btn btn-secondary" [ngClass]="{'active': showSection === 1}">Basic Info</button>
+      <button (click)="changeSection(2)" type="button" class="btn btn-secondary ml-1 mr-1" [ngClass]="{'active': showSection === 2}">Icons</button>
+      <button (click)="changeSection(5)" type="button" class="btn btn-secondary mr-1" [ngClass]="{'active': showSection === 5}">Details</button>
+      <button (click)="changeSection(3)" type="button" class="btn btn-secondary mr-1" [ngClass]="{'active': showSection === 3}">Pictures</button>
+      <button (click)="changeSection(4)" type="button" class="btn btn-secondary" [ngClass]="{'active': showSection === 4}">Promos</button>
+    </div>
+  </div>
+
+  <app-basic-info userType="admin" [course]="course" *ngIf="showSection === 1"></app-basic-info>
+  <app-icons userType="admin" [course]="course" *ngIf="showSection === 2"></app-icons>
+  <app-pictures userType="admin" [course]="course" *ngIf="showSection === 3"></app-pictures>
+  <app-promos userType="admin" [course]="course" *ngIf="showSection === 4"></app-promos>
+  <app-details userType="admin" [course]="course" *ngIf="showSection === 5"></app-details>
+
+
+  <!-- Modal to view the course listing-->
+  <ng-template #viewModal let-data>
+    <h3 mat-dialog-title>Course Preview</h3>
+    <mat-dialog-content>
+    <div class="modal-body">
+      <app-course [id]="data"></app-course>
+    </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="close()">Done</button>
+    </mat-dialog-actions>
+  </ng-template>
+
+</div><!--end inner container-->
+
+
+</div><!--end main container-->

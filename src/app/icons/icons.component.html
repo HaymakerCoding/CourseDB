@@ -1,0 +1,58 @@
+
+<form class="mt-4" [formGroup]="form" (ngSubmit)="submitForm(form.value)">
+  <p style="color:red;" *ngIf="unsavedChanges === true">* You have unsaved changes.</p>
+  <div class="form-group row">
+    <label for="website" class="col-sm-2 col-form-label"><img src="../assets/icons8-globe-96.png" height=33 width=33></label>
+    <div class="col-sm-9 pt-1">
+      <input type="text" (input)="checkUnsaved()" class="form-control" maxlength="200" placeholder="Enter website URL" formControlName="website">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="phone" class="col-sm-2 col-form-label"><i class="fas fa-phone-square fa-2x"></i></label>
+    <div class="col-sm-9 pt-1">
+      <input type="phone" (input)="checkUnsaved()" class="form-control" maxlength="20" placeholder="Enter phone" formControlName="phone">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="email" class="col-sm-2 col-form-label"><i class="fas fa-envelope-square fa-2x"></i></label>
+    <div class="col-sm-9 pt-1">
+      <input type="email" (input)="checkUnsaved()" class="form-control" maxlength="200" placeholder="Enter email" formControlName="email">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="map" class="col-sm-2 col-form-label"><img src="../assets/google-maps.png" height=33 width=33></label>
+    <div class="col-sm-9 pt-1">
+      <input type="text" (input)="checkUnsaved()" class="form-control" maxlength="300" placeholder="Enter google maps URL" formControlName="map">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="facebook" class="col-sm-2 col-form-label"><img src="../assets/facebookicon50.png" height=30 width=30></label>
+    <div class="col-sm-9 pt-1">
+      <input type="text" (input)="checkUnsaved()" class="form-control" maxlength="300" placeholder="Enter Facebook URL" formControlName="facebook">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="twitter" class="col-sm-2 col-form-label"><img src="../assets/twittericon50.png" height=30 width=30></label>
+    <div class="col-sm-9 pt-1">
+      <input type="text" (input)="checkUnsaved()" class="form-control" maxlength="300" placeholder="Enter Twitter URL" formControlName="twitter">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="instagram" class="col-sm-2 col-form-label"><i class="fab fa-instagram fa-2x"></i></label>
+    <div class="col-sm-9 pt-1">
+      <input type="text" (input)="checkUnsaved()" class="form-control" maxlength="300" placeholder="Enter Instagram URL" formControlName="instagram">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="youtube" class="col-sm-2 col-form-label"><i class="fab fa-youtube-square fa-2x" style="color:red;"></i></label>
+    <div class="col-sm-9 pt-1">
+      <input type="text" (input)="checkUnsaved()" class="form-control" maxlength="300" placeholder="Enter YouTube URL" formControlName="youtube">
+    </div>
+  </div>
+
+  <div class="form-group text-center">
+    <button mat-raised-button color="primary" style="width:200px;" [disabled]="!form.valid" name='btnSubmit'>Save Changes</button>
+  </div>
+</form>
+
+
